@@ -1,5 +1,6 @@
 package rover;
 
+import commands.Commands;
 import map.Coordinates;
 import map.Directions;
 import map.Map;
@@ -19,6 +20,18 @@ public class Rover {
         this.map = map;
         this.coordinates = new Coordinates(x, y);
         this.direction = direction;
+    }
+
+    public void move(ArrayList<Commands> commands) {
+        System.out.println("===MOVING===");
+        for (Commands command:commands) {
+            switch (command) {
+                case FORWARD -> this.goStraight();
+                case LEFT -> this.turnLeft();
+                case RIGHT -> this.turnRight();
+            }
+        }
+        this.display();
     }
 
     public void goStraight() {
